@@ -27,9 +27,11 @@ body{
 font-family: 'Pretendard-Regular';
 
 }
+
 nav{
     background-color: #FFFAFA;
 }
+
 
 
 </style>
@@ -52,7 +54,7 @@ nav{
 		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 		        <li class="nav-item">
-		          <a class="nav-link active" aria-current="page" href="question/question_insert.jsp">글작성</a>
+		          <a class="nav-link active" aria-current="page" href="lost/lost_insert.jsp">글작성</a>
 		        </li>
 		        <li class="nav-item">
 		          <a class="nav-link" aria-current="page" href="getQuestionList.do">우리동네질문</a>
@@ -67,7 +69,7 @@ nav{
 		          <a class="nav-link" href="getVoteList.do">동네투표</a>
 		        </li>
 		      </ul>      
-		      <form action="getQuestionList.do" method="post" id="questionForm"> 
+		      <form action="getLostList.do" method="post" id="lostForm"> 
                <input type="hidden" id="curPage" name="curPage" value="${searchVO.getCurPage()}"> 
 			   <input type="hidden" id="rowSizePerPage" name="rowSizePerPage" value="${searchVO.getRowSizePerPage()}">
                   <div class="container" >
@@ -108,11 +110,11 @@ nav{
 					<th scope="col">내용</th>
 				</thead>
 				<tbody>
-				<c:forEach  var="question" items="${ questionList }">
+				<c:forEach  var="lost" items="${ lostList }">
 					<tr>
-						<td>${ question.seq }</td>
-						<td>${ question.title }</td>
-						<td>${ question.content }</td>
+						<td>${ lost.seq }</td>
+						<td>${ lost.title }</td>
+						<td>${ lost.content }</td>
 					</tr>
 				</c:forEach>				
 				</tbody>
@@ -151,17 +153,17 @@ nav{
 				<c:set var="sw" value="${searchVO.getSearchWord()}"/>
 																
 				<c:if test="${ fp != 1 }">
-					<li class="page-item"><a href="getQuestionList.do?curPage=1&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
-					<li class="page-item"><a href="getQuestionList.do?curPage=${fp-1}&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link"><i class="fas fa-backward"></i></a></li>				
+					<li class="page-item"><a href="getLostList.do?curPage=1&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link"><i class="fas fa-fast-backward"></i></a></li>
+					<li class="page-item"><a href="getLostList.do?curPage=${fp-1}&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link"><i class="fas fa-backward"></i></a></li>				
 				</c:if>
 			
 				<c:forEach var="page" begin="${fp}" end="${lp}">
-					<li class="page-item ${cp==page ? 'active' : ''}"><a href="getQuestionList.do?curPage=${page}&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link">${page}</a></li>
+					<li class="page-item ${cp==page ? 'active' : ''}"><a href="getLostList.do?curPage=${page}&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link">${page}</a></li>
 				</c:forEach>
 				
 				<c:if test="${ lp < tp }">
-					<li class="page-item "><a href="getQuestionList.do?curPage=${lp+ps}&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link"><i class="fas fa-forward"></i></a></li>				
-					<li class="page-item"><a href="getQuestionList.do?curPage=${tp}&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link"><i class="fas fa-fast-forward"></i></a></li>				
+					<li class="page-item "><a href="getLostList.do?curPage=${lp+ps}&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link"><i class="fas fa-forward"></i></a></li>				
+					<li class="page-item"><a href="getLostList.do?curPage=${tp}&rowSizePerPage=${rp}&searchType=${st}&searchWord=${sw}" class="page-link"><i class="fas fa-fast-forward"></i></a></li>				
 				</c:if>
 			</ul> <!-- pagination -->	
 		</div> <!-- 페이징 -->	

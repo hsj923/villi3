@@ -29,15 +29,21 @@ font-family: 'Pretendard-Regular';
 }
 
 header{
-    background-color: #FDF5E6;
+    background-color: #FFFAFA;
 }
 
+nav{
+    background-color: #FFFAFA;
+}
+#banner2{
+    background-color: #ebecf0;
+}
 
 </style>
 </head>
 <body>
                   <!-- ===========header================ -->
- <header>
+ <header class="border-bottom border-white">
 	<div class="container">
 		<div class="row align-items-start p-3">
 		  <div class="col mt-2"><a href="#"><i class="fas fa-calendar fa-2x text-dark"></i></a></div>
@@ -60,26 +66,26 @@ header{
 				    <button type="button" data-bs-target="#carouselExampleControls" data-bs-slide-to="2" aria-label="Slide 3"></button>
 				  </div>
 				  <div class="carousel-inner">
-				        <div class="carousel-item active embed-responsive embed-responsive-4by3">
+				        <div class="carousel-item active embed-responsive embed-responsive-4by3" id="banner1">
 				          <img src="resources/images/1.png"   class="d-block w-50 card-img-top embed-responsive-item" alt="banner1" width="300" height="600">
 				        </div>
-					    <div class="carousel-item embed-responsive embed-responsive-4by3">
-					      <img src="resources/images/22.png" class="d-block w-50 card-img-top embed-responsive-item" alt="banner2" width="300" height="600">
+					    <div class="carousel-item embed-responsive embed-responsive-4by3" id="banner2">
+					      <img src="resources/images/2.png" class="d-block w-50 card-img-top embed-responsive-item" alt="banner2" width="300" height="600">
 					    </div>
-					    <div class="carousel-item embed-responsive embed-responsive-4by3">
+					    <div class="carousel-item embed-responsive embed-responsive-4by3" id="banner3">
 				          <img src="resources/images/3.png" class="d-block w-50 card-img-top embed-responsive-item" alt="banner3" width="300" height="600">
 				       </div>
 				  </div>
 			</div>      
 	     		 <!-- ============search=============== -->	 		            
-   <section class="border-bottom border-dark bg-white sticky-top z-index-10">            
+   <nav class="border-bottom border-dark sticky-top z-index-10">            
 	<div class="container"  align="center">
 	  <div class="row p-3">
 		 <div class="col"> 
 
 		 <nav class="navbar navbar-expand-lg navbar-light">
 		   <div class="container-fluid">
-		    <a class="navbar-brand" href="#">Villi</a>
+		    <a class="navbar-brand" href="getBoardList.do">Villi</a>
 		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		      <span class="navbar-toggler-icon"></span>
 		    </button>
@@ -94,10 +100,10 @@ header{
 		          <a class="nav-link" aria-current="page" href="getQuestionList.do">우리동네질문</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" aria-current="page" href="board/board_insert.jsp">동네분실센터</a>
+		          <a class="nav-link" aria-current="page" href="getLostList.do">동네분실센터</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" aria-current="page" href="board/board_insert.jsp">동네모임</a>
+		          <a class="nav-link" aria-current="page" href="getMeetingList.do">동네모임</a>
 		        </li>
 		        <li class="nav-item">
 		          <a class="nav-link" href="getVoteList.do">동네투표</a>
@@ -131,7 +137,7 @@ header{
 	  </div> 	
     </div>
     </div>
-  </section> 
+  </nav> 
   
 
   
