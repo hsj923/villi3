@@ -1,12 +1,12 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- 반복taglib -->
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>글 목록</title>
+	<title>메인</title>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" 
@@ -16,9 +16,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>	
 </head>
 <body>
-                  <!-- ===========header============ -->
- 					
- 
+                  <!-- ===========header================ -->
  <header>
 	<div class="container border-bottom border-dark">
 		<div class="row align-items-start mt-3 p-3 opacity-100">
@@ -35,7 +33,7 @@
 
                   <!-- ============banner=============== -->
   
-  <div id="carouselExampleControls" class="carousel slide mt-3 carousel-dark" data-bs-ride="carousel" align="center">
+  <div id="carouselExampleControls" class="carousel slide mt-3" data-bs-ride="carousel" align="center">
 				  <div class="carousel-inner">
 				        <div class="carousel-item active embed-responsive embed-responsive-4by3 ">
 				          <img src="resources/images/1.png"   class="d-block w-50 card-img-top embed-responsive-item" alt="banner1" width="300" height="600">
@@ -75,8 +73,6 @@
 		   <a href="board/board_list.jsp" class="btn btn-primary">동네생활</a>
 		 </div>
 	  </div>
-	 	
-
 	              <!-- ================글작성버튼============= -->
   		<div class="container-lg mt-10 bg-white" align="right">
 	     <a href="board/board_insert.jsp" class="w-20 p-3 col-1 mt-3 btn btn-secondary">글작성</a>
@@ -84,8 +80,9 @@
   </div>
   
              <!-- =========상품보기=============== -->
-              <!-- ======================LIST========================= -->
+            <!-- ======================LIST========================= -->
               
+                    
           <c:set var="i" value="0" />
 		 <c:set var="j" value="2" />
 		 <div class="container mt-1">
@@ -97,17 +94,7 @@
 		     <c:if test="{i%j == 0}">
 		      <tr>
 		     </c:if>
-		     
-		       <!-- 사진이 있으면 -->
-			     <c:if test="${ !empty  board.fileName1}">
-			     <td align="center"><img src="resources/images/${ board.fileName1 }" class="d-block w-50 card-img-top embed-responsive-item border border-dark mt-3" alt="img"  width="350" height="350">
-			     </c:if>
-			     <!-- 사진이 없으면 -->
-			     <c:if test="${ empty  board.fileName1}">
-			     <td align="center"><img src="resources/images/noimg.png"  class="d-block w-50 card-img-top embed-responsive-item border border-dark mt-3" alt="img"  width="350" height="350">
-			     </c:if>
-				 
-				 
+		     <td align="center"><img src="resources/images/${ board.fileName1 }" class="d-block w-50 card-img-top embed-responsive-item border border-dark mt-3" alt="img"  width="350" height="350">
 		         <a href="getBoard.do?seq=${ board.seq}"><h4>${board.title}</h4></a>  <h5>${board.writer} / ${board.regDate}</h5>  대충위치자리  대충좋아요자리  대충조회수자리</td>
 		    <c:if test="${i%j == j-1}">
 		     </tr>
@@ -123,13 +110,11 @@
 		  </c:choose>		    
 		 </table>
 		 </div>
-    </div>
-    
+		 </div>
+	                 <!-- =======================LIST 끝========================== -->
+	                 
 
-	                 <!-- =======================LIST 끝========================== -->         
-
-
-			  <!--====== admin일경우 사용자관리 및 신고글관리============  -->
+		  <!--====== admin일경우 사용자관리============  -->
 		<c:if test="${ sessionScope.isAdmin }">
 		<a href="getUserList.do" class="btn btn-primary">사용자관리</a>
 		</c:if>	
@@ -137,12 +122,12 @@
 		<c:if test="${ sessionScope.isAdmin }">
 		<a href="getReportList.do" class="btn btn-primary">신고글관리</a>
 		</c:if>	
-
-	
-
-                    <!-- ==================페이징============== -->
-	
-	<div class="container mt-3">
+		
+		
+		
+			                  <!-- ==================페이징============== -->
+		
+<div class="container mt-3">
 		<div class="row align-items-start">
 						
 			<ul class="col pagination justify-content-center">								
@@ -163,6 +148,9 @@
 				</c:if>
 			</ul>	    	
 		</div>
-	   </div> 	
+	   </div> 
+	   
+	   
+
 </body>
-</html>
+</html>			
