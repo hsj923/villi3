@@ -1,17 +1,11 @@
 package com.lec.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -23,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lec.jdbc.commom.SearchVO;
 import com.lec.jdbc.service.QuestionService;
-import com.lec.jdbc.vo.PageInfo;
 import com.lec.jdbc.vo.QuestionVO;
 
 @Controller
@@ -85,18 +78,6 @@ public class QuestionController {
 			String fileName = uploadFile3.getOriginalFilename();
 			uploadFile3.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
 			question.setFileName3(fileName);
-		}	
-		MultipartFile uploadFile4 = question.getUploadFile4();
-		if (!uploadFile4.isEmpty()) {
-			String fileName = uploadFile4.getOriginalFilename();
-			uploadFile4.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
-			question.setFileName4(fileName);
-		}	
-		MultipartFile uploadFile5 = question.getUploadFile5();
-		if (!uploadFile5.isEmpty()) {
-			String fileName = uploadFile5.getOriginalFilename();
-			uploadFile5.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
-			question.setFileName5(fileName);
 		}	
 		questionService.insertQuestion(question);
 		return "redirect:/getQuestionList.do";
@@ -171,7 +152,7 @@ public class QuestionController {
 //		return "getQuestionList.do";
 //	}		
 /* ----------------------------------------------------------------------- */	
-	//@RequestMapping("getQuestionList.do") 
+//	@RequestMapping("getQuestionList.do") 
 	public String getQuestionList(QuestionVO questionVO, SearchVO searchVO, Model model) {	
 		
 		int totalRowCount= questionService.getTotalRowCount(searchVO);

@@ -36,9 +36,6 @@ public class BoardController {
 	@Autowired
 	Environment environment;
 		
-//	@Value("#boardsql['selectById']") private String selectById;	
-//	@Value("#boardsql['selectBoardList']") private String selectBoardList;	
-	
 	private String uploadFolder = "";
 		
 		@PostConstruct
@@ -103,6 +100,41 @@ public class BoardController {
 		boardService.insertBoard(board);
 		return "redirect:/getBoardList.do";
 	}
+	@RequestMapping("*/insertsBoard.do")
+	public String insertsBoard(BoardVO board) throws IOException {
+		MultipartFile uploadFile1 = board.getUploadFile1();
+		if (!uploadFile1.isEmpty()) {
+			String fileName = uploadFile1.getOriginalFilename();
+			uploadFile1.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
+			board.setFileName1(fileName);
+		}	
+		MultipartFile uploadFile2 = board.getUploadFile2();
+		if (!uploadFile2.isEmpty()) {
+			String fileName = uploadFile2.getOriginalFilename();
+			uploadFile2.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
+			board.setFileName2(fileName);
+		}	
+		MultipartFile uploadFile3 = board.getUploadFile3();
+		if (!uploadFile3.isEmpty()) {
+			String fileName = uploadFile3.getOriginalFilename();
+			uploadFile3.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
+			board.setFileName3(fileName);
+		}	
+		MultipartFile uploadFile4 = board.getUploadFile4();
+		if (!uploadFile4.isEmpty()) {
+			String fileName = uploadFile4.getOriginalFilename();
+			uploadFile4.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
+			board.setFileName4(fileName);
+		}	
+		MultipartFile uploadFile5 = board.getUploadFile5();
+		if (!uploadFile5.isEmpty()) {
+			String fileName = uploadFile5.getOriginalFilename();
+			uploadFile5.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
+			board.setFileName5(fileName);
+		}	
+		boardService.insertsBoard(board);
+		return "redirect:/getBoardList.do";
+	}
 	
 	@RequestMapping(value="/getBoard.do", method=RequestMethod.GET)
 	public String getBoard(@RequestParam int seq, BoardVO board, Model model) {	
@@ -137,42 +169,7 @@ public class BoardController {
 		return "getBoardList.do";
 	}
 	
-	@RequestMapping("/download.do")
-	public String download(HttpServletRequest req, HttpServletResponse res) throws Exception { 	
-		req.setCharacterEncoding("utf-8");
-		String fileName = req.getParameter("fn");
-		
-		String fromPath = "d:/lec03/99.temp/upload/" + fileName;
-		String toPath = "d:/lec03/99.temp/download/" + fileName;
 	
-		byte[] b = new byte[4096];
-		File f = new File(toPath);
-		FileInputStream fis = new FileInputStream(fromPath);
-		
-		String sMimeType = req.getSession().getServletContext().getMimeType(fromPath); // mimetype = file type : pdf, exe, txt.... 
-		if(sMimeType == null) sMimeType = "application/octet-stream";
-		
-		String sEncoding = new String(fileName.getBytes("utf-8"), "8859_1");
-		String sEncoding1 = URLEncoder.encode(fileName, "utf-8");
-		
-		res.setContentType(sMimeType);
-		res.setHeader("Content-Transfer-Encoding", "binary");
-		res.setHeader("Content-Disposition", "attachment; filename = " + sEncoding1);
-			
-		int numRead;
-		ServletOutputStream os = res.getOutputStream();
-	
-		while((numRead=fis.read(b, 0, b.length)) != -1 ) {
-			os.write(b, 0, numRead);
-		}
-		
-		os.flush();
-		os.close();
-		fis.close();
-		
-		return "getBoardList.do";
-	}		
-/* ----------------------------------------------------------------------- */	
 	//@RequestMapping("getBoardList.do") 
 	public String getBoardList(BoardVO boardVO, SearchVO searchVO, Model model) {	
 		

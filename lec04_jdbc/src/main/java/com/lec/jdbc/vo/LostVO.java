@@ -10,7 +10,6 @@ public class LostVO {
 	private String title;
 	private String writer;
 	private String content;
-	private String status;
 	private Date regDate;
 	private int cnt;
 	private String fileName1; 
@@ -23,37 +22,15 @@ public class LostVO {
 	private MultipartFile uploadFile3;
 	private MultipartFile uploadFile4;
 	private MultipartFile uploadFile5;
-	private String cate;
-	private String cate2;
-	
 	
 
 	@Override
 	public String toString() {
-		return "BoardVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", status="
-				+ status + ", regDate=" + regDate + ", cnt=" + cnt + ", fileName1=" + fileName1 + ", fileName2="
-				+ fileName2 + ", fileName3=" + fileName3 + ", fileName4=" + fileName4 + ", fileName5=" + fileName5
-				+ ", uploadFile1=" + uploadFile1 + ", uploadFile2=" + uploadFile2 + ", uploadFile3=" + uploadFile3
-				+ ", uploadFile4=" + uploadFile4 + ", uploadFile5=" + uploadFile5 + ", cate=" + cate + ", cate2="
-				+ cate2 + "]";
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public String getCate2() {
-		return cate2;
-	}
-	public void setCate2(String cate2) {
-		this.cate2 = cate2;
-	}
-	public String getCate() {
-		return cate;
-	}
-	public void setCate(String cate) {
-		this.cate = cate;
+		return "LostVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
+				+ regDate + ", cnt=" + cnt + ", fileName1=" + fileName1 + ", fileName2=" + fileName2 + ", fileName3="
+				+ fileName3 + ", fileName4=" + fileName4 + ", fileName5=" + fileName5 + ", uploadFile1=" + uploadFile1
+				+ ", uploadFile2=" + uploadFile2 + ", uploadFile3=" + uploadFile3 + ", uploadFile4=" + uploadFile4
+				+ ", uploadFile5=" + uploadFile5 + "]";
 	}
 	public int getSeq() {
 		return seq;

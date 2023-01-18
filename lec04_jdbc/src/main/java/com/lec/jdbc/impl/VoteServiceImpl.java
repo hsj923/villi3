@@ -46,9 +46,10 @@ public class VoteServiceImpl implements VoteService {
 	}
 	@Override
 	public int insertVote(VoteVO vote) {
-		return VoteDAO.insertVote(vote);
-		
+		// TODO Auto-generated method stub
+		return 0;
 	}
+
 	
 	
 }

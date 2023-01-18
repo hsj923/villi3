@@ -15,17 +15,16 @@ public class MeetingRowMapper implements RowMapper<MeetingVO> {
 		meeting.setTitle(rs.getString("TITLE"));
 		meeting.setWriter(rs.getString("WRITER"));
 		meeting.setContent(rs.getString("CONTENT"));
-		meeting.setStatus(rs.getString("STATUS"));
 		meeting.setRegDate(rs.getDate("REGDATE"));
 		meeting.setCnt(rs.getInt("CNT"));
-		meeting.setFileName1(rs.getString("FILENAME1"));
-		meeting.setFileName2(rs.getString("FILENAME2"));
-		meeting.setFileName3(rs.getString("FILENAME3"));
-		meeting.setFileName4(rs.getString("FILENAME4"));
-		meeting.setFileName5(rs.getString("FILENAME5"));
-		meeting.setCate(rs.getString("CATE"));
-		meeting.setCate2(rs.getString("CATE2"));
-		// meeting.setUploadFile(rs.getString("FILE"));
+        meeting.setPer(rs.getString("PER"));
+        meeting.setMeet_Date(rs.getString("MEET_DATE"));
+        meeting.setMeet_Time(rs.getString("MEET_TIME"));
+        meeting.setPlace(rs.getString("PLACE"));
+        meeting.setStatus(rs.getString("STATUS"));
+        meeting.setFileName1(rs.getString("FILENAME1"));
+        meeting.setFileName2(rs.getString("FILENAME2"));
+        meeting.setFileName3(rs.getString("FILENAME3"));
 		return meeting;
 	}
 }

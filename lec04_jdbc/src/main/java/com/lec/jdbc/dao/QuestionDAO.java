@@ -9,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import com.lec.jdbc.commom.SearchVO;
 import com.lec.jdbc.mapper.QuestionRowMapper;
 import com.lec.jdbc.vo.QuestionVO;
@@ -45,7 +46,7 @@ public class QuestionDAO {
 		get_question_list   = environment.getProperty("get_question_list");
 		selectQuestionListByTitle   = environment.getProperty("selectQuestionListByTitle");
 		selectQuestionListByWriter  = environment.getProperty("selectQuestionListByWriter");
-		selectQuestionListByCate = environment.getProperty("selectQuestionListByCate");
+		selectQuestionListByCate  = environment.getProperty("selectQuestionListByCate");
 	}
 //	
 //	public List<QuestionVO> getQuestionList(int currentPage, int perPage) {		
@@ -69,9 +70,9 @@ public class QuestionDAO {
 				sql = get_pageinfo + " and title like '%" + searchVO.getSearchWord() + "%'";
 			} else if(searchVO.getSearchType().equalsIgnoreCase("writer")) {
 				sql = get_pageinfo + " and writer like '%" + searchVO.getSearchWord() + "%'";
-			} else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
+			}else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
 				sql = get_pageinfo + " and cate2 like '%" + searchVO.getSearchWord() + "%'";
-			}	
+			}
 		}
 		return jdbcTemplate.queryForInt(sql);
 	}
@@ -87,7 +88,7 @@ public class QuestionDAO {
 				sql = selectQuestionListByTitle;
 			} else if(searchVO.getSearchType().equalsIgnoreCase("writer")) {
 				sql = selectQuestionListByWriter;
-			} else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
+			}	else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
 				sql = selectQuestionListByCate;
 			} 					
 		}
@@ -99,7 +100,7 @@ public class QuestionDAO {
 
 	public int insertQuestion(QuestionVO question) {
 		return jdbcTemplate.update(insert_question, question.getTitle(), question.getWriter(), question.getContent(), question.getFileName1(),question.getFileName2()
-				                   ,question.getFileName3(), question.getFileName4(), question.getFileName5(), question.getCate2());
+				                   ,question.getFileName3());
 	}
 
 	public int deleteQuestion(QuestionVO question) {

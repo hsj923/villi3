@@ -9,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import com.lec.jdbc.commom.SearchVO;
 import com.lec.jdbc.mapper.LostRowMapper;
 import com.lec.jdbc.vo.LostVO;
@@ -26,26 +27,24 @@ public class LostDAO {
 	
 	private String sql = "";
 	private String get_pageinfo     = ""; 
-	private String insert_Lost     = ""; 
-	private String update_Lost     = ""; 
-	private String delete_Lost     = ""; 
+	private String insert_lost     = ""; 
+	private String update_lost     = ""; 
+	private String delete_lost     = ""; 
 	private String get_Lost        = ""; 
 	private String get_Lost_list   = ""; 
 	private String selectLostListByTitle = ""; 
 	private String selectLostListByWriter = ""; 
-	private String selectLostListByCate = ""; 
 
 	@PostConstruct
 	public void getSqlPropeties() {
 		get_pageinfo     = environment.getProperty("get_pageinfo");
-		insert_Lost     = environment.getProperty("insert_Lost");
-		update_Lost 	 = environment.getProperty("update_Lost");
-		delete_Lost 	 = environment.getProperty("delete_Lost");
-		get_Lost 		 = environment.getProperty("get_Lost");
-		get_Lost_list   = environment.getProperty("get_Lost_list");
+		insert_lost     = environment.getProperty("insert_lost");
+		update_lost 	 = environment.getProperty("update_lost");
+		delete_lost 	 = environment.getProperty("delete_lost");
+		get_Lost 		 = environment.getProperty("get_lost");
+		get_Lost_list   = environment.getProperty("get_lost_list");
 		selectLostListByTitle   = environment.getProperty("selectLostListByTitle");
 		selectLostListByWriter  = environment.getProperty("selectLostListByWriter");
-		selectLostListByCate = environment.getProperty("selectLostListByCate");
 	}
 //	
 //	public List<LostVO> getLostList(int currentPage, int perPage) {		
@@ -69,9 +68,7 @@ public class LostDAO {
 				sql = get_pageinfo + " and title like '%" + searchVO.getSearchWord() + "%'";
 			} else if(searchVO.getSearchType().equalsIgnoreCase("writer")) {
 				sql = get_pageinfo + " and writer like '%" + searchVO.getSearchWord() + "%'";
-			} else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
-				sql = get_pageinfo + " and cate2 like '%" + searchVO.getSearchWord() + "%'";
-			}	
+			}
 		}
 		return jdbcTemplate.queryForInt(sql);
 	}
@@ -87,8 +84,6 @@ public class LostDAO {
 				sql = selectLostListByTitle;
 			} else if(searchVO.getSearchType().equalsIgnoreCase("writer")) {
 				sql = selectLostListByWriter;
-			} else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
-				sql = selectLostListByCate;
 			} 					
 		}
 		
@@ -98,16 +93,16 @@ public class LostDAO {
 	}
 
 	public int insertLost(LostVO Lost) {
-		return jdbcTemplate.update(insert_Lost, Lost.getTitle(), Lost.getWriter(), Lost.getContent(), Lost.getFileName1(),Lost.getFileName2()
-				                   ,Lost.getFileName3(), Lost.getFileName4(), Lost.getFileName5(), Lost.getCate2());
+		return jdbcTemplate.update(insert_lost, Lost.getTitle(), Lost.getWriter(), Lost.getContent(), Lost.getFileName1(),Lost.getFileName2()
+				                   ,Lost.getFileName3(), Lost.getFileName4(), Lost.getFileName5());
 	}
 
 	public int deleteLost(LostVO Lost) {
-		return jdbcTemplate.update(delete_Lost, Lost.getSeq());
+		return jdbcTemplate.update(delete_lost, Lost.getSeq());
 	}
 
 	public int updateLost(LostVO Lost) {
-		return jdbcTemplate.update(update_Lost, Lost.getTitle(), Lost.getContent(), Lost.getSeq());
+		return jdbcTemplate.update(update_lost, Lost.getTitle(), Lost.getContent(), Lost.getSeq());
 	}	
 	
 

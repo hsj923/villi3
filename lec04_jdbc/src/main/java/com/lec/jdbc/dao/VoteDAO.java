@@ -72,9 +72,7 @@ public PageInfo getPageInfo(String tableName, int currentPage, int perPage) {
 		return pageInfo;
 	}
 
-	public int insertVote(VoteVO vote) {
-		return jdbcTemplate.update(insert_vote, vote.getQuestion(), insert_voteitem, vote.getItem(), vote.getListnum(), vote.getItemnum());		
-	}	
+
 	public int getTotalRowCount(SearchVO searchVO) {
 		sql = "select count(*) from vote where 1 = 1 "
 			    + " and "      + searchVO.getSearchCategory() 

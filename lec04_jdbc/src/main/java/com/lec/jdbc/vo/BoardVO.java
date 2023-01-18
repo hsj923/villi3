@@ -25,7 +25,7 @@ public class BoardVO {
 	private MultipartFile uploadFile5;
 	private String cate;
 	private String cate2;
-	
+	private String price;
 	
 
 	@Override
@@ -35,7 +35,13 @@ public class BoardVO {
 				+ fileName2 + ", fileName3=" + fileName3 + ", fileName4=" + fileName4 + ", fileName5=" + fileName5
 				+ ", uploadFile1=" + uploadFile1 + ", uploadFile2=" + uploadFile2 + ", uploadFile3=" + uploadFile3
 				+ ", uploadFile4=" + uploadFile4 + ", uploadFile5=" + uploadFile5 + ", cate=" + cate + ", cate2="
-				+ cate2 + "]";
+				+ cate2 + ", price=" + price + "]";
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
 	}
 	public String getStatus() {
 		return status;

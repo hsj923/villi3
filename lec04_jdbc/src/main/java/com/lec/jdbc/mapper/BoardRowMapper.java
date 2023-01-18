@@ -24,6 +24,7 @@ public class BoardRowMapper implements RowMapper<BoardVO> {
 		board.setFileName5(rs.getString("FILENAME5"));
 		board.setCate(rs.getString("CATE"));
 		board.setCate2(rs.getString("CATE2"));
+		board.setPrice(rs.getString("PRICE"));
 		// board.setUploadFile(rs.getString("FILE"));
 		return board;
 	}

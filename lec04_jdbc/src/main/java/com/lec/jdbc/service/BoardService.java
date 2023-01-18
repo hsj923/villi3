@@ -11,6 +11,7 @@ public interface BoardService {
 	BoardVO getBoard(BoardVO board);
 	int getTotalRowCount(SearchVO searchVO);
 	int insertBoard(BoardVO board);
+	int insertsBoard(BoardVO board);
 	int deleteBoard(BoardVO board);
 	int updateBoard(BoardVO board);
 	List<BoardVO> getBoardList(SearchVO searchVO);

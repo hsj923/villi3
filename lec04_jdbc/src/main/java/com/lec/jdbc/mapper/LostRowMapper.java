@@ -15,7 +15,6 @@ public class LostRowMapper implements RowMapper<LostVO> {
 		lost.setTitle(rs.getString("TITLE"));
 		lost.setWriter(rs.getString("WRITER"));
 		lost.setContent(rs.getString("CONTENT"));
-		lost.setStatus(rs.getString("STATUS"));
 		lost.setRegDate(rs.getDate("REGDATE"));
 		lost.setCnt(rs.getInt("CNT"));
 		lost.setFileName1(rs.getString("FILENAME1"));
@@ -23,9 +22,6 @@ public class LostRowMapper implements RowMapper<LostVO> {
 		lost.setFileName3(rs.getString("FILENAME3"));
 		lost.setFileName4(rs.getString("FILENAME4"));
 		lost.setFileName5(rs.getString("FILENAME5"));
-		lost.setCate(rs.getString("CATE"));
-		lost.setCate2(rs.getString("CATE2"));
-		// lost.setUploadFile(rs.getString("FILE"));
 		return lost;
 	}
 }

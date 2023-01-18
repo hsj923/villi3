@@ -10,50 +10,31 @@ public class QuestionVO {
 	private String title;
 	private String writer;
 	private String content;
-	private String status;
 	private Date regDate;
 	private int cnt;
 	private String fileName1; 
 	private String fileName2; 
 	private String fileName3; 
-	private String fileName4; 
-	private String fileName5; 
 	private MultipartFile uploadFile1;
 	private MultipartFile uploadFile2;
 	private MultipartFile uploadFile3;
-	private MultipartFile uploadFile4;
-	private MultipartFile uploadFile5;
-	private String cate;
-	private String cate2;
+	private Date q_date;
 	
 	
 
+
 	@Override
 	public String toString() {
-		return "BoardVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", status="
-				+ status + ", regDate=" + regDate + ", cnt=" + cnt + ", fileName1=" + fileName1 + ", fileName2="
-				+ fileName2 + ", fileName3=" + fileName3 + ", fileName4=" + fileName4 + ", fileName5=" + fileName5
-				+ ", uploadFile1=" + uploadFile1 + ", uploadFile2=" + uploadFile2 + ", uploadFile3=" + uploadFile3
-				+ ", uploadFile4=" + uploadFile4 + ", uploadFile5=" + uploadFile5 + ", cate=" + cate + ", cate2="
-				+ cate2 + "]";
+		return "QuestionVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content
+				+ ", regDate=" + regDate + ", cnt=" + cnt + ", fileName1=" + fileName1 + ", fileName2=" + fileName2
+				+ ", fileName3=" + fileName3 + ", uploadFile1=" + uploadFile1 + ", uploadFile2=" + uploadFile2
+				+ ", uploadFile3=" + uploadFile3 + ", q_date=" + q_date + "]";
 	}
-	public String getStatus() {
-		return status;
+	public Date getQ_date() {
+		return q_date;
 	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public String getCate2() {
-		return cate2;
-	}
-	public void setCate2(String cate2) {
-		this.cate2 = cate2;
-	}
-	public String getCate() {
-		return cate;
-	}
-	public void setCate(String cate) {
-		this.cate = cate;
+	public void setQ_date(Date q_date) {
+		this.q_date = q_date;
 	}
 	public int getSeq() {
 		return seq;
@@ -109,18 +90,7 @@ public class QuestionVO {
 	public void setFileName3(String fileName3) {
 		this.fileName3 = fileName3;
 	}
-	public String getFileName4() {
-		return fileName4;
-	}
-	public void setFileName4(String fileName4) {
-		this.fileName4 = fileName4;
-	}
-	public String getFileName5() {
-		return fileName5;
-	}
-	public void setFileName5(String fileName5) {
-		this.fileName5 = fileName5;
-	}
+
 	public MultipartFile getUploadFile1() {
 		return uploadFile1;
 	}
@@ -138,18 +108,6 @@ public class QuestionVO {
 	}
 	public void setUploadFile3(MultipartFile uploadFile3) {
 		this.uploadFile3 = uploadFile3;
-	}
-	public MultipartFile getUploadFile4() {
-		return uploadFile4;
-	}
-	public void setUploadFile4(MultipartFile uploadFile4) {
-		this.uploadFile4 = uploadFile4;
-	}
-	public MultipartFile getUploadFile5() {
-		return uploadFile5;
-	}
-	public void setUploadFile5(MultipartFile uploadFile5) {
-		this.uploadFile5 = uploadFile5;
 	}
 
 	

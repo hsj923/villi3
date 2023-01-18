@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+
 import com.lec.jdbc.commom.SearchVO;
 import com.lec.jdbc.dao.BoardDAO;
 import com.lec.jdbc.service.BoardService;
@@ -34,6 +35,11 @@ public class BoardServiceImpl implements BoardService {
 	public int insertBoard(BoardVO board) {
 		return BoardDAO.insertBoard(board);
 	}
+	
+	@Override
+	public int insertsBoard(BoardVO board) {
+		return BoardDAO.insertsBoard(board);
+	}
 
 	@Override
 	public int deleteBoard(BoardVO board) {	
@@ -56,4 +62,7 @@ public class BoardServiceImpl implements BoardService {
 	   public int updateCnt(int seq) {
 	      return BoardDAO.updateCnt(seq);
 	   }
+
+
+
 }

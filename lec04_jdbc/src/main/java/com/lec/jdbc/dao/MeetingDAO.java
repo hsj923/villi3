@@ -9,11 +9,12 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import com.lec.jdbc.commom.SearchVO;
 import com.lec.jdbc.mapper.MeetingRowMapper;
 import com.lec.jdbc.vo.MeetingVO;
 
-@Repository("MeetingDAO")
+@Repository("meetingDAO")
 @PropertySource("classpath:config/meetingsql.properties")
 public class MeetingDAO {
 	
@@ -26,11 +27,11 @@ public class MeetingDAO {
 	
 	private String sql = "";
 	private String get_pageinfo     = ""; 
-	private String insert_Meeting     = ""; 
-	private String update_Meeting     = ""; 
-	private String delete_Meeting     = ""; 
-	private String get_Meeting        = ""; 
-	private String get_Meeting_list   = ""; 
+	private String insert_meeting     = ""; 
+	private String update_meeting     = ""; 
+	private String delete_meeting     = ""; 
+	private String get_meeting        = ""; 
+	private String get_meeting_list   = ""; 
 	private String selectMeetingListByTitle = ""; 
 	private String selectMeetingListByWriter = ""; 
 	private String selectMeetingListByCate = ""; 
@@ -38,24 +39,24 @@ public class MeetingDAO {
 	@PostConstruct
 	public void getSqlPropeties() {
 		get_pageinfo     = environment.getProperty("get_pageinfo");
-		insert_Meeting     = environment.getProperty("insert_Meeting");
-		update_Meeting 	 = environment.getProperty("update_Meeting");
-		delete_Meeting 	 = environment.getProperty("delete_Meeting");
-		get_Meeting 		 = environment.getProperty("get_Meeting");
-		get_Meeting_list   = environment.getProperty("get_Meeting_list");
+		insert_meeting     = environment.getProperty("insert_meeting");
+		update_meeting 	 = environment.getProperty("update_meeting");
+		delete_meeting 	 = environment.getProperty("delete_meeting");
+		get_meeting 		 = environment.getProperty("get_meeting");
+		get_meeting_list   = environment.getProperty("get_meeting_list");
 		selectMeetingListByTitle   = environment.getProperty("selectMeetingListByTitle");
 		selectMeetingListByWriter  = environment.getProperty("selectMeetingListByWriter");
-		selectMeetingListByCate = environment.getProperty("selectMeetingListByCate");
+		selectMeetingListByCate  = environment.getProperty("selectMeetingListByCate");
 	}
 //	
-//	public List<meetingVO> getmeetingList(int currentPage, int perPage) {		
+//	public List<MeetingVO> getMeetingList(int currentPage, int perPage) {		
 //		Object[] args = {(currentPage-1)*perPage,  perPage };
-//		return jdbcTemplate.query(get_meeting_list, args, new meetingRowMapper());		
+//		return jdbcTemplate.query(get_meeting_list, args, new MeetingRowMapper());		
 //	}
 		
-	public MeetingVO getMeeting(MeetingVO Meeting) {
-		Object[] args = { Meeting.getSeq() };
-		return jdbcTemplate.queryForObject(get_Meeting, args, new MeetingRowMapper());	
+	public MeetingVO getMeeting(MeetingVO meeting) {
+		Object[] args = { meeting.getSeq() };
+		return jdbcTemplate.queryForObject(get_meeting, args, new MeetingRowMapper());	
 	}
 	
 	public int getTotalRowCount(SearchVO searchVO) {
@@ -69,9 +70,9 @@ public class MeetingDAO {
 				sql = get_pageinfo + " and title like '%" + searchVO.getSearchWord() + "%'";
 			} else if(searchVO.getSearchType().equalsIgnoreCase("writer")) {
 				sql = get_pageinfo + " and writer like '%" + searchVO.getSearchWord() + "%'";
-			} else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
+			}else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
 				sql = get_pageinfo + " and cate2 like '%" + searchVO.getSearchWord() + "%'";
-			}	
+			}
 		}
 		return jdbcTemplate.queryForInt(sql);
 	}
@@ -87,7 +88,7 @@ public class MeetingDAO {
 				sql = selectMeetingListByTitle;
 			} else if(searchVO.getSearchType().equalsIgnoreCase("writer")) {
 				sql = selectMeetingListByWriter;
-			} else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
+			}	else if(searchVO.getSearchType().equalsIgnoreCase("cate2")) {
 				sql = selectMeetingListByCate;
 			} 					
 		}
@@ -97,17 +98,17 @@ public class MeetingDAO {
 		return jdbcTemplate.query(sql, args, new MeetingRowMapper());
 	}
 
-	public int insertMeeting(MeetingVO Meeting) {
-		return jdbcTemplate.update(insert_Meeting, Meeting.getTitle(), Meeting.getWriter(), Meeting.getContent(), Meeting.getFileName1(),Meeting.getFileName2()
-				                   ,Meeting.getFileName3(), Meeting.getFileName4(), Meeting.getFileName5(), Meeting.getCate2());
+	public int insertMeeting(MeetingVO meeting) {
+		return jdbcTemplate.update(insert_meeting, meeting.getTitle(), meeting.getWriter(), meeting.getContent(), meeting.getPer(), meeting.getMeet_Date(), meeting.getMeet_Time(),
+				meeting.getPlace(), meeting.getFileName1(),meeting.getFileName2(), meeting.getFileName3());
 	}
 
-	public int deleteMeeting(MeetingVO Meeting) {
-		return jdbcTemplate.update(delete_Meeting, Meeting.getSeq());
+	public int deleteMeeting(MeetingVO meeting) {
+		return jdbcTemplate.update(delete_meeting, meeting.getSeq());
 	}
 
-	public int updateMeeting(MeetingVO Meeting) {
-		return jdbcTemplate.update(update_Meeting, Meeting.getTitle(), Meeting.getContent(), Meeting.getSeq());
+	public int updateMeeting(MeetingVO meeting) {
+		return jdbcTemplate.update(update_meeting, meeting.getTitle(), meeting.getContent(), meeting.getSeq());
 	}	
 	
 
@@ -118,7 +119,7 @@ public class MeetingDAO {
 
 	   public int updateCnt(int seq) {
 		      int updateCount = 0;
-		      String sql = "update Meeting set cnt = cnt + 1 " + " where seq = ?";
+		      String sql = "update meeting set cnt = cnt + 1 " + " where seq = ?";
 		      jdbcTemplate.update(sql, seq);
 		      return updateCount;
 		   }

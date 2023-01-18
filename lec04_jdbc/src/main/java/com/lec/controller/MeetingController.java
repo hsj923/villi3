@@ -1,17 +1,11 @@
 package com.lec.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -24,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.lec.jdbc.commom.SearchVO;
 import com.lec.jdbc.service.MeetingService;
 import com.lec.jdbc.vo.MeetingVO;
-import com.lec.jdbc.vo.PageInfo;
 
 @Controller
 @PropertySource("classpath:config/uploadpath.properties")
@@ -86,18 +79,6 @@ public class MeetingController {
 			uploadFile3.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
 			meeting.setFileName3(fileName);
 		}	
-		MultipartFile uploadFile4 = meeting.getUploadFile4();
-		if (!uploadFile4.isEmpty()) {
-			String fileName = uploadFile4.getOriginalFilename();
-			uploadFile4.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
-			meeting.setFileName4(fileName);
-		}	
-		MultipartFile uploadFile5 = meeting.getUploadFile5();
-		if (!uploadFile5.isEmpty()) {
-			String fileName = uploadFile5.getOriginalFilename();
-			uploadFile5.transferTo(new File("C:/Users/ezen/Documents/GitHub/villi3/lec04_jdbc/src/main/webapp/resources/images/" + fileName));
-			meeting.setFileName5(fileName);
-		}	
 		meetingService.insertMeeting(meeting);
 		return "redirect:/getMeetingList.do";
 	}
@@ -121,16 +102,16 @@ public class MeetingController {
 
 	
 	
-	@RequestMapping(value="/updatemeeting.do", method=RequestMethod.GET)
-	public String updatemeeting(Model model, MeetingVO meeting, SearchVO searchVO) {
+	@RequestMapping(value="/updateMeeting.do", method=RequestMethod.GET)
+	public String updateMeeting(Model model, MeetingVO meeting, SearchVO searchVO) {
 		meetingService.updateMeeting(meeting);
 		model.addAttribute("searchVO", searchVO);
 		model.addAttribute("meeting", meetingService.getMeeting(meeting));
 		return "meeting/updateMeeting.jsp";
 	}
 	
-	@RequestMapping(value="/updatemeeting.do", method=RequestMethod.POST)
-	public String updatemeeting(MeetingVO meeting) {
+	@RequestMapping(value="/updateMeeting.do", method=RequestMethod.POST)
+	public String updateMeeting(MeetingVO meeting) {
 		meetingService.updateMeeting(meeting);
 		return "getMeetingList.do";
 	}
@@ -171,8 +152,8 @@ public class MeetingController {
 //		return "getmeetingList.do";
 //	}		
 /* ----------------------------------------------------------------------- */	
-	//@RequestMapping("getmeetingList.do") 
-	public String getmeetingList(MeetingVO meetingVO, SearchVO searchVO, Model model) {	
+//	@RequestMapping("getmeetingList.do") 
+	public String getMeetingList(MeetingVO meetingVO, SearchVO searchVO, Model model) {	
 		
 		int totalRowCount= meetingService.getTotalRowCount(searchVO);
 		searchVO.setTotalRowCount(totalRowCount);
