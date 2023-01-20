@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>상품빌리 글쓰기</title>
+<title>서비스빌리 글쓰기</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -71,7 +71,7 @@ nav {
 											<ul class="dropdown-menu dropdown-menu-dark"
 												aria-labelledby="dropdownMenuButton2">
 												<li><a class="dropdown-item active" href="#">상품</a></li>
-												<li><a class="dropdown-item" href="board_sinsert.jsp">서비스</a></li>
+												<li><a class="dropdown-item" href="#">서비스</a></li>
 												<li><a class="dropdown-item" href="../dongnae/dongnae_main.jsp">동네생활</a></li>
 											</ul>
 										</div>
@@ -125,7 +125,7 @@ nav {
 
 	<!-- 카테고리 -->
 	<div class="container mt-3" align="center">
-		<form action="insertBoard.do" method="post"
+		<form action="insertServiceBoard.do" method="post"
 			enctype="multipart/form-data">
 			<div class="row">
 				<div class="col">

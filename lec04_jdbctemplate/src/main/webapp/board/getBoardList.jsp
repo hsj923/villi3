@@ -170,7 +170,7 @@ nav {
 													<li><a class="dropdown-item active"
 														href="board/insertBoard.jsp">상품</a></li>
 													<li><a class="dropdown-item"
-														href="board/board_sinsert.jsp">서비스</a></li>
+														href="board/insertServiceBoard.jsp">서비스</a></li>
 													<li><a class="dropdown-item"
 														href="dongnae/dongnae_main.jsp">동네생활</a></li>
 												</ul>
